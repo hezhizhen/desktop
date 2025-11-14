@@ -424,7 +424,12 @@ function App() {
     const workspace = await Workspace.get(workspaceId);
 
     if (!workspace) {
-      // TODO
+      await new DialogBuilder()
+        .title("Failed to delete runbook")
+        .icon("error")
+        .message("Workspace not found")
+        .action({ label: "OK", value: "ok", variant: "flat" })
+        .build();
       return;
     }
 
